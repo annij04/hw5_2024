@@ -1,0 +1,145 @@
+body{
+    font-family: "Poppins", serif; /* Poppins font with serif as backup */
+    background-image: url("../images/concrete_seamless.png"); /* background image */
+    background-color: #f1f1f1; /* backup color */
+    }
+
+    /* animate logo with keyframes */
+    @keyframes logoAnimation {
+    /* starts at a width of 25px and grow to 475px */
+    0% {
+        width: 25px;
+        opacity: 0;
+    }
+    100% {
+        width: 475px;
+        opacity: 1;
+    }
+}
+
+#logo {
+    animation: logoAnimation 5s forwards; /* takes 5 sec and only happen when the page is loaded */
+}
+
+header {
+    display: flex;
+    flex-direction: column; /* Logo and nav links are stacked center vertically */
+    align-items: center;
+}
+
+/* links have same color after being visited */
+.nav_links .nav_item a:visited {
+    color: blue;
+}
+
+/* border for header elements that are direct children of a card class*/
+.card > header {
+    background-color: #288088;
+    border: 2px solid #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+/* fixes the corners */
+.card {
+    flex-basis: 450px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.pricing {
+    display: flex;
+    justify-content: center; /* centers items horizontally */
+    align-items: center;    /* centers items vertically */ 
+    flex-wrap: wrap;
+}
+
+/* border for all gallery images */
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* centers images horizontally */
+}
+
+@media screen and (min-width: 900px) {
+    header {
+        flex-direction: row; /* Logo and links are algined horizontally */
+        justify-content: space-between; /* Aligns logo as far left as possible and links as far right as possible */
+    }
+    .nav_links {
+        display: flex; /* Nav links lie horizontally */
+        justify-content: space-between;
+    }
+
+    .pricing .card{
+        flex-basis: 275px; /* all card items have width 275px */
+    }
+
+    /* First header outside of main remains visible even with scrolling */
+    body > header {
+        position: sticky;
+        width: 100%;
+        z-index: 999;
+        top: 0px;
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    /* Disable animation for logo */
+    #logo {
+        animation: none;
+    }
+}
+
+/* Specifications for when page is printed in portrait mode. */
+@media print and (orientation: portrait) {
+    body {
+        font-family: Arial, Helvetica; 
+        background-image: none; /* Remove background image */
+    }
+
+    header {
+        flex-direction: column; /* Logo and nav links are stacked center vertically */
+    }
+
+    header nav {
+        width: 100%;
+    }
+
+    .nav_links {
+        display: flex;
+        justify-content: space-evenly; /* nav links are spaced evenly */
+    }
+
+    .pricing {
+        flex-wrap: nowrap; /* Aligns cards on one row with width automatically adjusted */
+        align-items: flex-end; /* Aligns elements along the bottom*/
+    }
+
+    .card {
+        flex-basis: 325px;
+        border: 2px solid #45ADDD;
+    }
+
+    /* Remove gallery */
+    .gallery {
+        display: none;
+    }
+
+    /* Remove gallery */
+    #gallery {
+        display: none;
+    }
+
+    .card li:nth-child(2)::after {
+        content: '\1F44D'; /* Thumbs-up at the end of each Card's second list item */
+    }
+}
